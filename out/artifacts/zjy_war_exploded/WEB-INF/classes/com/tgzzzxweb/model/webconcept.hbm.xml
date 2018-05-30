@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-6 16:34:38 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.tgzzzxweb.model.webconcept" table="webconcept">
+        <id name="id" type="int">
+            <column name="Wid" />
+            <generator class="native" />
+        </id>
+        <property name="start" type="java.lang.String">
+            <column name="Wstart" />
+        </property>
+        <property name="Wcontinue" type="java.lang.String">
+            <column name="Wcontinue" />
+        </property>
+        <property name="Wreturn" type="java.lang.String">
+            <column name="Wreturn" />
+        </property>
+        <property name="introduction" type="java.lang.String">
+            <column name="Hintroduction" />
+        </property>
+    </class>
+</hibernate-mapping>

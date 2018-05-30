@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-6 16:34:38 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.tgzzzxweb.model.teacher" table="teacher">
+        <id name="id" type="int">
+            <column name="Tid" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="Tname" />
+        </property>
+        <property name="introduction" type="java.lang.String">
+            <column name="Tintroduction" />
+        </property>
+        <property name="Cname" type="java.lang.String">
+            <column name="Cname" />
+        </property>
+        <property name="Wid" type="int">
+            <column name="Wid" />
+        </property>
+    </class>
+</hibernate-mapping>

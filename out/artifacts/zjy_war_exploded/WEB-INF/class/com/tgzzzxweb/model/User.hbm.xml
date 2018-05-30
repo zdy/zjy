@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-6 16:34:38 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<class name="com.tgzzzxweb.model.User" table="user">
+		<id name="userid" type="java.lang.String">
+			<column name="Uid" />
+			<generator class="assigned" />
+			<!--这里指定数据库主键生成策略-->
+		</id>
+		<property name="password" type="java.lang.String">
+			<column name="Upassword" />
+		</property>
+		<property name="name" type="java.lang.String">
+			<column name="Uname" />
+		</property>
+		<property name="bool" type="java.lang.Integer">
+			<column name="Ubool" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="index" namespace="/" extends="struts-default">
+		<default-action-ref name="default" />
+		<global-allowed-methods>regex:.*</global-allowed-methods><!-- 适配通配符 struts2.5 -->
+        <action name="default">
+            <result>/error.jsp</result>
+        </action>
+		<action name="index_*" class="com.tgzzzxweb.action.indexAction" method="{1}">
+			<result name="success">/index.jsp</result>
+			<result name="Failed">/Userlogin.jsp</result>
+            <result name="Error">/error.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-6 16:34:38 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<class name="com.tgzzzxweb.model.Student" table="Student">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="NAME" />
+		</property>
+		<property name="age" type="int">
+			<column name="AGE" />
+		</property>
+		<property name="gender" type="java.lang.String">
+			<column name="GENDER" />
+		</property>
+		<property name="grade" type="java.lang.String">
+			<column name="GRADE" />
+		</property>
+		<property name="url" type="java.lang.String">
+			<column name="URL" />
+		</property>
+	</class>
+</hibernate-mapping>

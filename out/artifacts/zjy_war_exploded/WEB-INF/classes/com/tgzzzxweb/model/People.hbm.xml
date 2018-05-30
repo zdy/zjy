@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-6 16:34:38 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<class name="com.tgzzzxweb.model.People" table="people">
+		<id name="id" type="int">
+			<column name="Pid" />
+			<generator class="native" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="Pname" />
+		</property>
+		<property name="age" type="int">
+			<column name="Page" />
+		</property>
+		<property name="sex" type="java.lang.String">
+			<column name="Psex" />
+		</property>
+		<property name="edu" type="java.lang.String">
+			<column name="Pedu" />
+		</property>
+        <property name="phone" type="java.lang.String">
+            <column name="Pphone" />
+        </property>
+        <property name="credit" type="java.lang.String">
+            <column name="Pcredit" />
+        </property>
+        <property name="date" type="java.sql.Date">
+            <column name="Pdate" />
+        </property>
+        <property name="time" type="java.sql.Time">
+            <column name="Ptime" />
+        </property>
+        <property name="bool" type="int">
+            <column name="Pbool" />
+        </property>
+        <property name="Uid" type="java.lang.String">
+            <column name="Uid" />
+        </property>
+        <property name="ndate" type="java.sql.Timestamp">
+            <column name="Pndate" />
+        </property>
+	</class>
+</hibernate-mapping>

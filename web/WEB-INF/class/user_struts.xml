@@ -1,0 +1,21 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="user" namespace="/" extends="struts-default">
+		<default-action-ref name="default" />
+		<global-allowed-methods>regex:.*</global-allowed-methods><!-- 适配通配符 struts2.5 -->
+        <action name="default">
+            <result>/error.jsp</result>
+        </action>
+		<action name="user_*" class="com.tgzzzxweb.action.UserAction" method="{1}">
+			<result name="success">/showalluser.jsp</result>
+			<result name="input">/adduser.jsp</result>
+			<result name="login">/modifyuserpwd.jsp</result>
+		</action>
+		<action name="login" class="com.tgzzzxweb.action.UserLogin">
+			<result name ="success">/index.html</result>
+			<result name="input">/login.jsp</result>
+		</action>
+	</package>
+</struts>

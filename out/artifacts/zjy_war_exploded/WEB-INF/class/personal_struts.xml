@@ -1,0 +1,28 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="personal" namespace="/" extends="struts-default">
+		<default-action-ref name="default" />
+		<global-allowed-methods>regex:.*</global-allowed-methods><!-- 适配通配符 struts2.5 -->
+        <action name="default">
+            <result>/error.jsp</result>
+        </action>
+		<action name="personal_*" class="com.tgzzzxweb.action.personalAction" method="{1}">
+			<result name="vgeren">/personal/vgerenjilu.jsp</result>
+			<result name="pgeren">/personal/pgerenjilu.jsp</result>
+			<result name="vaddsuccess">/personal/jump.html</result>
+			<result name="paddsuccess">/personal/jump4.html</result>
+			<result name="padderror">/personal/vaddpeople.jsp</result>
+            <result name="vadd">/personal/vaddvolunteer.jsp</result>
+            <result name="padd">/personal/vaddpeople.jsp</result>
+            <result name="vsuccess">/personal/jump1.html</result>
+            <result name="psuccess">/personal/jump3.html</result>
+            <result name="uperror">/personal/modifypeople.jsp</result>
+			<result name="edit">/personal/jump2.html</result>
+            <result name="error">/personal/editxinxi.jsp</result>
+			<result name="order">/personal/order.jsp</result>
+			<result name="showallvol">/index/index_volunteer.jsp</result>
+		</action>
+	</package>
+</struts>

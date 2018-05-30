@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-6 16:34:38 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.tgzzzxweb.model.company" table="company">
+        <id name="name" type="java.lang.String">
+            <column name="Cname" />
+            <generator class="native" />
+        </id>
+        <property name="phone" type="java.lang.String">
+            <column name="Cphone" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="Caddress" />
+        </property>
+    </class>
+</hibernate-mapping>

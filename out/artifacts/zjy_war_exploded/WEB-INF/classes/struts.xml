@@ -1,0 +1,11 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<include file="user_struts.xml"></include>
+	<include file="student_struts.xml"></include>
+	<include file="people_struts.xml"></include>
+	<include file="index_struts.xml"></include>
+	<include file="personal_struts.xml"></include>
+	<include file="modify_struts.xml"></include>
+</struts>

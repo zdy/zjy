@@ -1,0 +1,21 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="modify" namespace="/" extends="struts-default">
+		<default-action-ref name="default" />
+		<global-allowed-methods>regex:.*</global-allowed-methods><!-- 适配通配符 struts2.5 -->
+        <action name="default">
+            <result>/error.jsp</result>
+        </action>
+		<action name="modify_*" class="com.tgzzzxweb.action.modifyAction" method="{1}">
+			<result name="success">/showshouye.jsp</result>
+			<result name="showshoudai">/editshoudai.jsp</result>
+            <result name="showxudai">/editxudai.jsp</result>
+            <result name="showhuankuan">/edithuankuan.jsp</result>
+            <result name="ishowshoudai">/index/index_shoudai.jsp</result>
+            <result name="ishowxudai">/index/index_xudai.jsp</result>
+            <result name="ishowhuankuan">/index/index_huankuan.jsp</result>
+		</action>
+	</package>
+</struts>

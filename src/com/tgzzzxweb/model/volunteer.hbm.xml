@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-6 16:34:38 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<class name="com.tgzzzxweb.model.volunteer" table="volunteers">
+		<id name="id" type="int">
+			<column name="Vid" />
+			<generator class="native" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="Vname" />
+		</property>
+		<property name="age" type="int">
+			<column name="Vage" />
+		</property>
+		<property name="motto" type="java.lang.String">
+			<column name="Vmotto" />
+		</property>
+		<property name="year" type="java.lang.String">
+			<column name="Vyear" />
+		</property>
+		<property name="phone" type="java.lang.String">
+			<column name="Vphone" />
+		</property>
+        <property name="address" type="java.lang.String">
+            <column name="Vaddress" />
+        </property>
+        <property name="Uid" type="java.lang.String">
+            <column name="Uid" />
+        </property>
+        <property name="notes" type="java.lang.String">
+            <column name="Vnotes" />
+        </property>
+        <property name="sex" type="java.lang.String">
+            <column name="Vsex" />
+        </property>
+		<property name="picture" type="java.lang.String">
+			<column name="Vpicture" />
+		</property>
+        <property name="date" type="java.sql.Timestamp">
+            <column name="Vdate" />
+        </property>
+	</class>
+</hibernate-mapping>

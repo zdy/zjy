@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-6 16:34:38 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.tgzzzxweb.model.honor" table="honor">
+        <id name="id" type="int">
+            <column name="Hid" />
+            <generator class="native" />
+        </id>
+        <property name="introduction" type="java.lang.String">
+            <column name="Hintroduction" />
+        </property>
+        <property name="date" type="java.sql.Date">
+            <column name="Hdate" />
+        </property>
+        <property name="Wid" type="int">
+            <column name="Wid" />
+        </property>
+    </class>
+</hibernate-mapping>
