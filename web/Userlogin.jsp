@@ -30,7 +30,19 @@
 
     <!-- Fonts -->
     <link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-
+    <script type="text/javascript">
+        function checkInput() {
+            var new1 = document.form1.npass1.value;
+            var new2 = document.form1.npass2.value;
+            if(new1 != new2){
+                alert("两次密码不同");
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    </script>
 </head>
 <!-- //Head -->
 
@@ -48,7 +60,7 @@
             <li>
                 <input type="checkbox" id="brand1" value="">
                 <label for="brand1"><span></span>记住密码</label>
-                <a href="#">忘记密码?</a>
+                <a href="/StudentThereare.html">忘记密码?</a>
             </li>
         </ul>
         <div style="margin-top:0px;margin-bottom: 20px">
@@ -70,7 +82,7 @@
     <div class="contact-form1">
         <div class="contact-w3-agileits">
             <h3>注册信息</h3>
-            <form action="./index_userregister.do" method="post">
+            <form name="form1" action="./index_userregister.do" method="post" onsubmit="return checkInput()">
                 <div class="form-sub-w3ls">
                     <input placeholder="用户名"  type="text" required="" name = "user.userid">
                     <div class="icon-agile">
@@ -94,13 +106,13 @@
                     </div>
                 </div>
                 <div class="form-sub-w3ls">
-                    <input placeholder="密码"  type="password" required="">
+                    <input placeholder="密码"  type="password" required="" name="password" id="npass1">
                     <div class="icon-agile">
                         <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="form-sub-w3ls">
-                    <input placeholder="确认密码"  type="password" required="" name = "user.password">
+                    <input placeholder="确认密码"  type="password" required="" name = "user.password" id="npass2">
                     <div class="icon-agile">
                         <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                     </div>

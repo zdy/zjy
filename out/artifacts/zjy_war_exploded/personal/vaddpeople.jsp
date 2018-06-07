@@ -332,7 +332,7 @@
                     <p style="margin-left: 300px">已经预约过，不可重复预约</p>
                 </c:when>
                 <c:otherwise>
-                    <div style="margin-left: 40px">
+                    <div style="margin-left: 280px">
                         <s:property value="#request.error"/>
                     </div>
                     <input type="submit" value="提交" class="btn" id="submit" style="margin-left: 300px">

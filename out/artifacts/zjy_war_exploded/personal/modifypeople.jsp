@@ -132,7 +132,7 @@
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><c:out value="${name}" /></button>
                             <ul class="dropdown-menu pull-left" style="right:0; left:auto;">
                                 <li>
-                                    <a class="dropdown-item" href="./personal/Dashboard.jsp">个人中心</a>
+                                    <a class="dropdown-item" href="../personal/Dashboard.jsp">个人中心</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li>
@@ -309,7 +309,7 @@
             <%--<img alt="" src="./${param.url }" width="50px" height="50px">
             头像文件:<input type="file" name="file" /><br> <br /> <br /> <br />--%>
             <input type="text" name = "peo.id" value="${sessionScope.people.id}" style="display:none" />
-            <div style="margin-left: 40px">
+            <div style="margin-left: 300px">
                 <s:property value="#request.error"/>
             </div>
             <input type="submit" value="提交" class="btn" style="margin-left: 300px">

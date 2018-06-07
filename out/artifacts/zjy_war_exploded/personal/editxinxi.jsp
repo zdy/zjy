@@ -129,7 +129,7 @@
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><c:out value="${name}" /></button>
                             <ul class="dropdown-menu pull-left" style="right:0; left:auto;">
                                 <li>
-                                    <a class="dropdown-item" href="./personal/Dashboard.jsp">个人中心</a>
+                                    <a class="dropdown-item" href="../personal/Dashboard.jsp">个人中心</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li>
