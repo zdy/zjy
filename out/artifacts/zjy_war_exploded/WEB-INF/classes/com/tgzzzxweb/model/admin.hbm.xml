@@ -12,7 +12,7 @@
             <column name="Apassword" />
         </property>
         <property name="cname" type="java.lang.String">
-            <column name="cname" />
+            <column name="Cname" />
         </property>
     </class>
 </hibernate-mapping>

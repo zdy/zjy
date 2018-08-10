@@ -24,41 +24,58 @@ public class PeopleDaoImp implements PeopleDao{
     @Override
     public void deletePeople(int id) {
         session = HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        People people = new People();
-        people.setId(id);
-        session.delete(people);
-        session.getTransaction().commit();
+        session.getTransaction().begin();
+        try {
+            People people = new People();
+            people.setId(id);
+            session.delete(people);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Override
     public boolean peoplechek(String phone, String name) {
         boolean flag = false;
         session = HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List<People> lists = session.createQuery("from People").list();
-        int len = lists.size();
-        for(int i = 0;i < len;++i)
-        {
-            People people = lists.get(i);
-            String pho = people.getPhone();
-            String nam = people.getName();
-            if(phone == pho && nam == name){
-                flag = true;
-                break;
+        session.getTransaction().begin();
+        try {
+            List<People> lists = session.createQuery("from People").list();
+            int len = lists.size();
+            for (int i = 0; i < len; ++i) {
+                People people = lists.get(i);
+                String pho = people.getPhone();
+                String nam = people.getName();
+                if (phone == pho && nam == name) {
+                    flag = true;
+                    break;
+                }
             }
+            session.getTransaction().commit();
+            return flag;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
         }
-        session.getTransaction().commit();
-        return flag;
     }
 
     @Override
     public List<People> selectAllPeople() {
         session = HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List<People> peopleList = session.createQuery("from People").list();
-        session.getTransaction().commit();
-        return peopleList;
+        session.getTransaction().begin();
+        try {
+            List<People> peopleList = session.createQuery("from People").list();
+            session.getTransaction().commit();
+            return peopleList;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Override
@@ -69,7 +86,7 @@ public class PeopleDaoImp implements PeopleDao{
             d = format.parse(date);
             java.sql.Date date1 = new java.sql.Date(d.getTime());
             session = HibernateUtils.getSessionFactory().getCurrentSession();
-            session.beginTransaction();
+            session.getTransaction().begin();
             List<People> peopleList = session.createQuery("from People as peo where peo.date = ?").setParameter(0, date1).list();
             session.getTransaction().commit();
             return peopleList;
@@ -83,49 +100,73 @@ public class PeopleDaoImp implements PeopleDao{
     @Override
     public List<People> selectPeopleByedu(String edu) {
         session= HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List<People> peopleList = session.createQuery("from People as peo where peo.edu = ?").setParameter(0,edu).list();
-        session.getTransaction().commit();
-        return peopleList;
+        session.getTransaction().begin();
+        try {
+            List<People> peopleList = session.createQuery("from People as peo where peo.edu = ?").setParameter(0, edu).list();
+            session.getTransaction().commit();
+            return peopleList;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Override
     public List<People> selectPeopleByName(String name) {
         session= HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List<People> peopleList = session.createQuery("from People as peo where peo.name like ?").setParameter(0,"%" + name + "%").list();
-        session.getTransaction().commit();
-        return peopleList;
+        session.getTransaction().begin();
+        try {
+            List<People> peopleList = session.createQuery("from People as peo where peo.name like ?").setParameter(0, "%" + name + "%").list();
+            session.getTransaction().commit();
+            return peopleList;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Override
     public void updatePeople(People people, String id) {
         session = HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        People temp = (People) session.get(People.class,Integer.parseInt(id));
-        temp.setId(people.getId());
-        temp.setAge(people.getAge());
-        temp.setBool(people.getBool());
-        temp.setCredit(people.getCredit());
-        temp.setDate(people.getDate());
-        temp.setEdu(people.getEdu());
-        temp.setName(people.getName());
-        temp.setPhone(people.getPhone());
-        temp.setSex(people.getSex());
-        temp.setUid(people.getUid());
-        temp.setTime(people.getTime());
-        temp.setNdate(people.getNdate());
-        System.out.println(temp);
-        session.update(temp);
-        session.getTransaction().commit();
+        session.getTransaction().begin();
+        try {
+            People temp = (People) session.get(People.class, Integer.parseInt(id));
+            temp.setId(people.getId());
+            temp.setAge(people.getAge());
+            temp.setBool(people.getBool());
+            temp.setCredit(people.getCredit());
+            temp.setDate(people.getDate());
+            temp.setEdu(people.getEdu());
+            temp.setName(people.getName());
+            temp.setPhone(people.getPhone());
+            temp.setSex(people.getSex());
+            temp.setUid(people.getUid());
+            temp.setTime(people.getTime());
+            temp.setNdate(people.getNdate());
+            System.out.println(temp);
+            session.update(temp);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public People selectStudentByUid(String Uid){
         session = HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        People vol = (People)session.createQuery("from People as vl where vl.Uid = ?").setParameter(0,Uid).uniqueResult();
-        session.getTransaction().commit();
-        return vol;
+        session.getTransaction().begin();
+        try {
+            People vol = (People) session.createQuery("from People as vl where vl.Uid = ?").setParameter(0, Uid).uniqueResult();
+            session.getTransaction().commit();
+            return vol;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public boolean studentchek(String Uid) {
@@ -141,17 +182,23 @@ public class PeopleDaoImp implements PeopleDao{
 
     public void addpeople(People peo) {
         session = HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        Timestamp d = new Timestamp(System.currentTimeMillis());
-        peo.setNdate(d);
-        session.save(peo);
-        session.getTransaction().commit();
+        session.getTransaction().begin();
+        try {
+            Timestamp d = new Timestamp(System.currentTimeMillis());
+            peo.setNdate(d);
+            session.save(peo);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public List<time> order()
     {
         session = HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
+        session.getTransaction().begin();
         try {
             List<time> times = new ArrayList<>();
             SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -214,11 +261,17 @@ public class PeopleDaoImp implements PeopleDao{
     public int jisuanrenshu(java.sql.Date date,Time time)
     {
         session = HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List<People> lists = session.createQuery("from People as peo where peo.date = ? and peo.time = ?")
-                .setParameter(0,date)
-                .setParameter(1,time).list();
-        session.getTransaction().commit();
-        return lists.size();
+        session.getTransaction().begin();
+        try {
+            List<People> lists = session.createQuery("from People as peo where peo.date = ? and peo.time = ?")
+                    .setParameter(0, date)
+                    .setParameter(1, time).list();
+            session.getTransaction().commit();
+            return lists.size();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

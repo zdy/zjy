@@ -31,11 +31,18 @@ public class StudentDaoImp implements StudentDao {
 	@Override
 	public void addStudent(volunteer volunteer) {
 		session = HibernateUtils.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		session.getTransaction().begin();
         Timestamp d = new Timestamp(System.currentTimeMillis());
         volunteer.setDate(d);
-		session.save(volunteer);
-		session.getTransaction().commit();
+        try {
+            session.save(volunteer);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
 	}
 
 	@Override
@@ -61,45 +68,70 @@ public class StudentDaoImp implements StudentDao {
 		}*/
 		System.out.println("1");
 		session = HibernateUtils.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		session.getTransaction().begin();
 		volunteer vol = new volunteer();
 		vol.setId(id);
-		session.delete(vol);
-		session.getTransaction().commit();
+		try {
+            session.delete(vol);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
 	}
 
 	@Override
 	public List<volunteer> selectStudentByName(String name) {
 		session = HibernateUtils.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-        List<volunteer> volunteerList = session.createQuery("from volunteer as vol where vol.name like ?").setParameter(0,"%" + name + "%").list();
-        session.getTransaction().commit();
-		return volunteerList;
+		session.getTransaction().begin();
+		try {
+            List<volunteer> volunteerList = session.createQuery("from volunteer as vol where vol.name like ?").setParameter(0, "%" + name + "%").list();
+            session.getTransaction().commit();
+            return volunteerList;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
 	}
 
 	public volunteer selectStudentByUid(String Uid){
 	    session = HibernateUtils.getSessionFactory().getCurrentSession();
-	    session.beginTransaction();
+		session.getTransaction().begin();
 	    System.out.println(Uid);
-	    volunteer vol = (volunteer)session.createQuery("from volunteer as vl where vl.Uid = ?").setParameter(0,Uid).uniqueResult();
-	    session.getTransaction().commit();
-	    return vol;
+	    try{
+	        volunteer vol = (volunteer)session.createQuery("from volunteer as vl where vl.Uid = ?").setParameter(0,Uid).uniqueResult();
+	        session.getTransaction().commit();
+	        return vol;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 
 	@Override
 	public List<volunteer> selectAllStudent() {
 	    session = HibernateUtils.getSessionFactory().getCurrentSession();
-	    session.beginTransaction();
-	    List<volunteer> volunteerList = session.createQuery("from volunteer").list();
-	    session.getTransaction().commit();
-		return volunteerList;
+		session.getTransaction().begin();
+        try {
+            List<volunteer> volunteerList = session.createQuery("from volunteer").list();
+            session.getTransaction().commit();
+            return volunteerList;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
 	}
 
 	@Override
 	public void updateStudent(volunteer vol,String id) {
 		SimpleDateFormat f = new SimpleDateFormat("yyyy");
 		session = HibernateUtils.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		session.getTransaction().begin();
 		volunteer temp = (volunteer) session.get(volunteer.class,Integer.parseInt(id));
 		temp.setPicture(vol.getPicture());
 		temp.setAddress(vol.getAddress());
@@ -116,18 +148,30 @@ public class StudentDaoImp implements StudentDao {
 		Timestamp d = new Timestamp(System.currentTimeMillis());
 		temp.setDate(d);
 		System.out.println(temp);
-		session.update(temp);
-		session.getTransaction().commit();
+		try{
+		    session.update(temp);
+		    session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
 	}
 
 	public String selectStudentImg(String name) {
 		String path = null;
 		session = HibernateUtils.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		volunteer vol = (volunteer) session.createQuery("from volunteer as vol where vol.name = ?").setParameter(0,name).uniqueResult();
-		path = vol.getPicture();
-		session.getTransaction().commit();
-		return path;
+		session.getTransaction().begin();
+		try{
+		    volunteer vol = (volunteer) session.createQuery("from volunteer as vol where vol.name = ?").setParameter(0,name).uniqueResult();
+		    path = vol.getPicture();
+		    session.getTransaction().commit();
+		    return path;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
 	}
 
 	@Override

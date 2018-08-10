@@ -15,24 +15,36 @@ public class ConceptDaoImp extends MysqlConnection implements ConceptDao{
 	@Override
 	public webconcept showallconcept(){
 		session = HibernateUtils.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		webconcept concept;
-        concept = (webconcept) session.createQuery("from webconcept").uniqueResult();
-        session.getTransaction().commit();
-        return concept;
+		session.getTransaction().begin();
+		try {
+			webconcept concept;
+			concept = (webconcept) session.createQuery("from webconcept").uniqueResult();
+			session.getTransaction().commit();
+			return concept;
+		}catch (Exception e){
+			session.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 	@Override
 	public void updateConcept(webconcept concept, int id) {
 		session = HibernateUtils.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		webconcept temp = (webconcept) session.get(webconcept.class, id);
-		temp.setStart(concept.getStart());
-		temp.setWcontinue(concept.getWcontinue());
-		temp.setWreturn(concept.getWreturn());
-		temp.setIntroduction(concept.getIntroduction());
-		session.update(temp);
-		session.getTransaction().commit();
+		session.getTransaction().begin();
+		try {
+            webconcept temp = (webconcept) session.get(webconcept.class, id);
+            temp.setStart(concept.getStart());
+            temp.setWcontinue(concept.getWcontinue());
+            temp.setWreturn(concept.getWreturn());
+            temp.setIntroduction(concept.getIntroduction());
+            session.update(temp);
+            session.getTransaction().commit();
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
 	}
 
 

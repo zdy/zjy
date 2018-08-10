@@ -25,9 +25,15 @@ public class adminDaoImp implements AdminDao{
     public List<admin> showAlladmin()// 显示所有管理
     {
         session = HibernateUtils.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List<admin> list = session.createQuery("FROM admin").list();
-        session.getTransaction().commit();
-        return list;
+        session.getTransaction().begin();
+        try {
+            List<admin> list = session.createQuery("FROM admin").list();
+            session.getTransaction().commit();
+            return list;
+        }catch (Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            throw e;
+        }
     }
 }
